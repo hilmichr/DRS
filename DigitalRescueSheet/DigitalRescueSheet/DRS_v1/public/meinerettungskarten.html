@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Prompt&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/owl.carousel/dist/assets/owl.carousel.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/lightbox2/dist/css/lightbox.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/utils.css" />
+    <link rel="stylesheet" href="css/searchbar.css" />
+    <link rel="stylesheet" href="css/meinerettungskarten.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- header -->
+    <header id="home" class="main-header rettungskarte">
+      <div class="navbar">
+        <h1 class="brand"><span>Digital Rescue Sheet</span> Upload Service</h1>
+        <nav class="main__nav">
+          <ul>
+            <li><a href="home.html">Home</a></li>
+            <li>
+              <a href="#">Menü</a>
+              <ul class="dropdown">
+                <li><a href="catalog.html">Fahrzeug Katalog</a></li>
+                <li>
+                  <a href="meinerettungskarten.html">Meine Rettungskarten</a>
+                </li>
+                <li><a href="upload.html">Upload</a></li>
+              </ul>
+            </li>
+            <li><a href="contact.html">Kontakt</a></li>
+            <li><a href="login.html">Login</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="content">
+        <h1>Meine Rettungskarten</h1>
+      </div>
+    </header>
+
+    <title>Popup-Fenster</title>
+
+    <div id="overlay" class="overlay"></div>
+
+    <section id="catalog" class="text-center py-2">
+      <h1>
+        Hier finden Sie eine Übersicht Ihrer hochgeladenen Rettungskarten.
+      </h1>
+      <p></p>
+      <p></p>
+
+      <div class="border-bottom__catalog"></div>
+
+      <div class="search-container">
+        <input
+          type="text"
+          id="search-input"
+          class="search-input"
+          placeholder="Search..."
+          oninput="showSuggestions()"
+        />
+        <div id="suggestions" class="suggestions"></div>
+      </div>
+
+      <div class="items">
+        <div class="item">
+          <div class="item__image">
+            <a href="photo/rc_bmw.png" data-lightbox="roadtrip">
+              <img src="photo/rc_bmw.png" alt="BMW V1" />
+            </a>
+          </div>
+          <div class="item__text">
+            <div class="item__text__wrap">
+              <h2 class="item__text__title" style="color: #27374d">BMW V1</h2>
+              <a
+                href="labelling.html"
+                class="btn__catalog btn-outline__catalog"
+                style="font-size: 1em"
+              >
+                Zur Rettungskarte
+              </a>
+              <div class="btns-con">
+                <button class="edit" onclick="promptForNewName('BMW V1')">
+                  <i class="fa-solid fa-pen-to-square"></i>
+                </button>
+                <button class="delete" onclick="deleteItem('BMW V1')">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item__image">
+            <a href="photo/rc_mercedes.png" data-lightbox="roadtrip">
+              <img src="photo/rc_mercedes.png" alt="Mercedes V1" />
+            </a>
+          </div>
+          <div class="item__text">
+            <div class="item__text__wrap">
+              <h2 class="item__text__title" style="color: #27374d">
+                Mercedes V1
+              </h2>
+              <a
+                href="labelling.html"
+                class="btn__catalog btn-outline__catalog"
+                style="font-size: 1em"
+              >
+                Zur Rettungskarte
+              </a>
+              <div class="btns-con">
+                <button class="edit" onclick="promptForNewName('Mercedes V1')">
+                  <i class="fa-solid fa-pen-to-square"></i>
+                </button>
+                <button class="delete" onclick="deleteItem('Mercedes V1')">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item__image">
+            <a href="photo/suv.png" data-lightbox="roadtrip">
+              <img src="photo/suv.png" alt="SUV" />
+            </a>
+          </div>
+          <div class="item__text">
+            <div class="item__text__wrap">
+              <h2 class="item__text__title" style="color: #27374d">SUV</h2>
+              <a
+                href="labelling.html"
+                class="btn__catalog btn-outline__catalog"
+                style="font-size: 1em"
+              >
+                Zur Rettungskarte
+              </a>
+              <div class="btns-con">
+                <button class="edit" onclick="promptForNewName('SUV')">
+                  <i class="fa-solid fa-pen-to-square"></i>
+                </button>
+                <button class="delete" onclick="deleteItem('SUV')">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="../node_modules/lightbox2/dist/js/lightbox.min.js"></script>
+    <script src="js/meinerettungskarten.js"></script>
+  </body>
+
+  <footer id="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <!-- Contact -->
+          <section class="contact">
+            <header>
+              <h3>Contact</h3>
+            </header>
+            <p>
+              Do you have a problem?
+              <a href="contact.html" style="cursor: pointer; color: #fff"
+                >Contact us!</a
+              >
+            </p>
+          </section>
+        </div>
+      </div>
+    </div>
+  </footer>
+</html>

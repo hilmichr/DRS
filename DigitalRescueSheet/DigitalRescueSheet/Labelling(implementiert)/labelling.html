@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three.js GLTF Model Viewer</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: space-between;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        #model-container {
+            width: 75%;
+            height: 100%;
+            position: relative;
+        }
+        #sidebar-container {
+            width: 25%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background-color: rgba(255, 255, 255, 0.8);
+            font-family: Arial, sans-serif;
+        }
+        #mesh-list-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+        }
+        #rename-button-container, #ignore-button-container {
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.9);
+            text-align: center;
+        }
+        #rename-button, #save-button, #ignore-button {
+            width: 100%;
+            padding: 10px;
+            cursor: pointer;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            font-size: 16px;
+        }
+        #defined-labels-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        li {
+            padding: 5px;
+            cursor: pointer;
+            border-bottom: 1px solid #ccc;
+        }
+        li:hover {
+            background-color: #ddd;
+        }
+        .label {
+            font-size: 10px;
+            color: #ffffff;
+            background-color: #000000;
+            padding: 2px;
+            position: absolute;
+        }
+        #labels-2d-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        #message {
+            margin-top: 10px;
+            color: green;
+            text-align: center;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div id="model-container"></div>
+    <div id="sidebar-container">
+        <div id="mesh-list-container">
+            <ul id="mesh-list"></ul>
+        </div>
+        <div id="rename-button-container">
+            <button id="rename-button">Umbennen</button>
+        </div>
+        <div id="defined-labels-container">
+            <h3>Definierte Labels:</h3>
+            <ul id="defined-labels-list"></ul>
+        </div>
+        <div id="ignore-button-container">
+            <button id="ignore-button">Ignorieren</button>
+        </div>
+        <div id="save-button-container">
+            <button id="save-button">Modell Speichern</button>
+        </div>
+        <div id="message-container">
+            <div id="message"></div>
+        </div>
+    </div>
+
+    <div id="labels-2d-container"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three/examples/js/loaders/GLTFLoader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three/examples/js/renderers/CSS2DRenderer.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three/examples/js/exporters/GLTFExporter.js"></script>
+
+<script>
+    const container = document.getElementById('model-container');
+    const meshNamesList = document.getElementById('mesh-list');
+    const definedLabelsList = document.getElementById('defined-labels-list');
+    const renameButton = document.getElementById('rename-button');
+    const ignoreButton = document.getElementById('ignore-button');
+    const saveButton = document.getElementById('save-button');
+    const messageElement = document.getElementById('message');
+    let selectedMesh = null;
+    let ignoredMeshes = []; // Array to store meshes to be ignored by raycaster
+
+    // Scene, Camera, Renderer
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    container.appendChild(renderer.domElement);
+
+    // Label Renderer
+    const labelRenderer = new THREE.CSS2DRenderer();
+    labelRenderer.setSize(container.clientWidth, container.clientHeight);
+    labelRenderer.domElement.style.position = 'absolute';
+    labelRenderer.domElement.style.top = '0';
+    document.getElementById('labels-2d-container').appendChild(labelRenderer.domElement);
+
+    // Light
+    const ambientLight = new THREE.AmbientLight(0x404040); // Soft white light
+    scene.add(ambientLight);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+    directionalLight.position.set(1, 1, 1).normalize();
+    scene.add(directionalLight);
+
+    // GLTF Loader
+    const loader = new THREE.GLTFLoader();
+    let model;
+    loader.load('model/GenericModelBlend2.glb', function (gltf) {
+        model = gltf.scene;
+        model.scale.set(1.5, 1.5, 1.5); // Adjust scale as necessary
+        scene.add(model);
+        // Center the model
+        const box = new THREE.Box3().setFromObject(model);
+        const center = box.getCenter(new THREE.Vector3());
+        model.position.sub(center);
+        camera.position.set(0, 1, 6); // Adjust camera position
+
+        // Enable raycasting for all meshes in the model
+        model.traverse((child) => {
+            if (child.isMesh) {
+                child.castShadow = true;
+                child.receiveShadow = true;
+                addMeshToList(child); // Add each mesh to the list
+            }
+        });
+
+        animate();
+    }, undefined, function (error) {
+        console.error(error);
+    });
+
+    // Controls
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true; // Enable damping for smooth rotation
+    controls.dampingFactor = 0.25; // Damping factor
+    controls.rotateSpeed = 0.5; // Rotation speed
+
+    // Animation loop
+    function animate() {
+        requestAnimationFrame(animate);
+        controls.update(); // Update controls
+        renderer.render(scene, camera);
+        labelRenderer.render(scene, camera);
+    }
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+        camera.aspect = container.clientWidth / container.clientHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        labelRenderer.setSize(container.clientWidth, container.clientHeight);
+    });
+
+    // Raycasting
+    const raycaster = new THREE.Raycaster();
+    const mouse = new THREE.Vector2();
+
+    function onMouseClick(event) {
+        // Calculate mouse position in normalized device coordinates
+        mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+        mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+        // Set raycaster position and direction based on mouse and camera
+        raycaster.setFromCamera(mouse, camera);
+
+        // Filter out ignored meshes
+        const intersectObjects = [];
+        model.traverse(child => {
+            if (child.isMesh && !ignoredMeshes.includes(child)) {
+                intersectObjects.push(child);
+            }
+        });
+
+        // Perform raycasting
+        const intersects = raycaster.intersectObjects(intersectObjects, true);
+
+        // Process intersected objects
+        if (intersects.length > 0) {
+            const selectedObject = intersects[0].object;
+            highlightMesh(selectedObject);
+            selectedMesh = selectedObject; // Set selected mesh
+            console.log(`${selectedObject.name} ist ausgewählt`);
+        }
+    }
+
+
+    document.addEventListener('mousedown', onMouseClick);
+
+    // Add each mesh to the list
+    function addMeshToList(mesh) {
+        const li = document.createElement('li');
+        li.textContent = mesh.name;
+        li.addEventListener('click', () => {
+            if (!ignoredMeshes.includes(mesh)) {
+                highlightMesh(mesh);
+                selectedMesh = mesh; // Set selected mesh
+            }
+        });
+        meshNamesList.appendChild(li);
+        mesh.userData.listItem = li; // Store reference to list item in userData
+    }
+
+    // Highlight the selected mesh
+    function highlightMesh(mesh) {
+        // Reset all meshes to default color
+        model.traverse((child) => {
+            if (child.isMesh) {
+                child.material.color.set(0xffffff);
+            }
+        });
+
+        // Set selected mesh color to highlight
+        mesh.material.color.set(0xff0000);
+    }
+
+    // Rename selected mesh
+    renameButton.addEventListener('click', () => {
+        if (selectedMesh) {
+            const newName = prompt('Geben Sie einen Labelnamen ein:', selectedMesh.name);
+            if (newName) {
+                selectedMesh.name = newName;
+                updateMeshList();
+                addLabelToMesh(selectedMesh);
+                addLabelToDefinedList(newName);
+                showMessage('Label erfolgreich erstellt');
+            }
+        } else {
+            alert('Kein Mesh ausgewählt');
+        }
+    });
+
+    // Ignore by Raycaster button
+    ignoreButton.addEventListener('click', () => {
+        if (selectedMesh) {
+            ignoredMeshes.push(selectedMesh);
+            selectedMesh.userData.listItem.textContent = `${selectedMesh.name} (ignored)`;
+            selectedMesh.userData.listItem.style.pointerEvents = 'none'; // Disable click events on list item
+            showMessage(`${selectedMesh.name} wird ignoriert`);
+        } else {
+            alert('Kein Mesh ausgewählt');
+        }
+    });
+
+    // Update the mesh list with new names
+    function updateMeshList() {
+        meshNamesList.innerHTML = '';
+        model.traverse((child) => {
+            if (child.isMesh) {
+                addMeshToList(child);
+            }
+        });
+
+        // Preserve ignored state
+        ignoredMeshes.forEach(mesh => {
+            mesh.userData.listItem.textContent = `${mesh.name} (ignored)`;
+            mesh.userData.listItem.style.pointerEvents = 'none';
+        });
+    }
+
+    // Add label to the selected mesh
+    function addLabelToMesh(mesh) {
+        // Remove existing label if any
+        if (mesh.userData.label) {
+            scene.remove(mesh.userData.label);
+            delete mesh.userData.label;
+        }
+
+        const labelDiv = document.createElement('div');
+        labelDiv.className = 'label';
+        labelDiv.textContent = mesh.name;
+        const label = new THREE.CSS2DObject(labelDiv);
+        label.position.set(0, 1, 0);
+        mesh.add(label);
+        mesh.userData.label = label; // Store label in userData
+    }
+
+    // Add label to the defined labels list
+    function addLabelToDefinedList(name) {
+        const li = document.createElement('li');
+        li.textContent = name;
+        definedLabelsList.appendChild(li);
+    }
+
+    // Show message
+    function showMessage(message) {
+        messageElement.textContent = message;
+        setTimeout(() => {
+            messageElement.textContent = '';
+        }, 2000);
+    }
+</script>
+</body>
+</html>

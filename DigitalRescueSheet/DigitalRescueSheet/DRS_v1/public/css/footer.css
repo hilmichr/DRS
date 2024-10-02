@@ -1,0 +1,81 @@
+#footer {
+  position: relative;
+  overflow: hidden;
+  padding: 4em 0 4em 0;
+  background: #27374d;
+  color: #fff;
+  margin-top: 2em;
+}
+
+#footer .icon.circled {
+  background: #fff;
+  color: #27374d;
+}
+
+#footer header {
+  text-align: center;
+  cursor: default;
+}
+
+#footer h2,
+#footer h3,
+#footer h4,
+#footer h5,
+#footer h6 {
+  color: #fff;
+}
+
+#footer .contact {
+  text-align: center;
+}
+
+#footer .contact p {
+  text-align: center;
+  margin: 0 0 3em 0;
+}
+
+/* contact */
+.main-header.contact {
+  background-image: url("../photo/contact_us.jpeg");
+  background-position: bottom;
+  height: 50vh;
+}
+.containerfooter__contact {
+  max-width: 1200px;
+  padding: 0 1.4rem;
+  margin: auto;
+}
+#contact-a .form-fields {
+  display: grid;
+  grid-template-areas: "name email" "subject phone" "message message" "button button";
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+#contact-a .form-fields .name {
+  grid-area: name;
+}
+#contact-a .form-fields .email {
+  grid-area: email;
+}
+#contact-a .form-fields .phone {
+  grid-area: phone;
+}
+#contact-a .form-fields .subject {
+  grid-area: subject;
+}
+#contact-a .form-fields .message {
+  grid-area: message;
+  height: 180px;
+}
+#contact-a .form-fields .btn-dark {
+  grid-area: button;
+}
+#contact-a .form-fields .input {
+  padding: 0.5rem 1rem;
+}
+#contact-b .contact-info {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  text-align: center;
+  color: #fff;
+}

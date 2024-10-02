@@ -1,0 +1,88 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 100vh;
+}
+.left-panel {
+  width: 65%;
+  padding: 20px;
+}
+.right-panel {
+  width: 30%;
+  padding: 20px;
+  border-left: 1px solid #ccc;
+}
+.component-label {
+  margin-bottom: 10px;
+}
+.component-box {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+/* Allgemeine Styles für die Suchleiste */
+#componentSelect {
+  width: 50%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Wichtig, um padding in der Breite zu berücksichtigen */
+  background-color: #f2f2f2;
+}
+/* .dropdown.new {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 20px;
+} */
+.dropdown-content,
+.dropdown-submenu-content {
+  display: none;
+  position: top;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+.dropdown-content a,
+.dropdown-submenu-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.dropdown-content a:hover,
+.dropdown-submenu-content a:hover {
+  background-color: #f1f1f1;
+}
+.dropdown-content {
+  top: 100%;
+}
+.dropdown-submenu-content {
+  position: relative;
+  left: 0;
+  top: 0;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.dropdown-submenu a::after {
+  content: "▶";
+  transition: transform 0.2s;
+}
+.dropdown-submenu a.open::after {
+  transform: rotate(90deg);
+}
+.dropdown-submenu .leaf::after {
+  content: "";
+}
+.result {
+  margin-top: 10px;
+}

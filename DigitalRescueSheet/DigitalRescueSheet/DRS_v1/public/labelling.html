@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rescue Sheet Labelling</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+        display: flex;
+        justify-content: space-between;
+        height: 100vh;
+        background-color: #f0f0f0;
+      }
+      #model-container {
+        width: 75%;
+        height: 100%;
+        position: relative;
+        background-color: #f0f0f0;
+      }
+      #sidebar-container {
+        width: 25%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background-color: rgba(255, 255, 255, 0.8);
+        font-family: Arial, sans-serif;
+      }
+      #mesh-list-container {
+        flex: 1;
+        overflow-y: auto;
+        padding: 10px;
+      }
+      #rename-button-container,
+      #ignore-button-container {
+        padding: 10px;
+        background-color: rgba(255, 255, 255, 0.9);
+        text-align: center;
+      }
+      #rename-button,
+      #save-button,
+      #ignore-button {
+        width: 100%;
+        padding: 10px;
+        cursor: pointer;
+        border: none;
+        background-color: #27374d;
+        color: #dde6ed;
+        border-radius: 2px;
+        font-size: 16px;
+      }
+      #defined-labels-container {
+        flex: 1;
+        overflow-y: auto;
+        padding: 10px;
+      }
+      ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
+      li {
+        padding: 5px;
+        cursor: pointer;
+        border-bottom: 1px solid #ccc;
+      }
+      li:hover {
+        background-color: #ddd;
+      }
+      .label {
+        font-size: 10px;
+        color: #000000;
+        background-color: #ffffa7;
+        padding: 2px;
+        position: absolute;
+        font-family: 'Poppins', sans-serif;
+      }
+      #labels-2d-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+      #message {
+        margin-top: 10px;
+        color: green;
+        text-align: center;
+        font-size: 14px;
+      }
+      .dropdown {
+        margin: 10px;
+        padding: 7px;
+        left: 2px;
+        background-color: #27374d;
+        color: #dde6ed;
+        font-size: 16px;
+        border: 3px;
+        border-radius: 2px;
+        text-align: left;
+        border-color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="model-container"></div>
+    <div id="sidebar-container">
+      <div id="mesh-list-container">
+        <ul id="mesh-list"></ul>
+      </div>
+      <div id="rename-button-container">
+        <select id="label-dropdown" class="dropdown">
+          <option value="">Label auswählen</option>
+          <optgroup label="SICHERHEITSRELEVANTE KOMPONENTEN"></optgroup>
+          <optgroup label="Airbagsysteme">
+            <option value="Frontairbag Fahrerseite">
+              Frontairbag Fahrerseite
+            </option>
+            <option value="Frontairbag Beifahrerseite">
+              Frontairbag Beifahrerseite
+            </option>
+            <option value="Seitenairbag Fahrerseite">
+              Seitenairbag Fahrerseite
+            </option>
+            <option value="Seitenairbag Beifahrerseite">
+              Seitenairbag Beifahrerseite
+            </option>
+            <option value="Kopfairbag">Kopfairbag</option>
+          </optgroup>
+          <optgroup label="Hochspannungssysteme">
+            <option value="Hochvoltbatterie">Hochvoltbatterie</option>
+            <option value="Elektrische Antriebseinheit">
+              Elektrische Antriebseinheit
+            </option>
+            <option value="Wechselrichter">Wechselrichter</option>
+            <option value="DC/DC-Wandler">DC/DC-Wandler</option>
+          </optgroup>
+          <optgroup label="Kraftstoffsystem">
+            <option value="Kraftstofftank">Kraftstofftank</option>
+            <option value="Kraftstoffleitungen">Kraftstoffleitungen</option>
+            <option value="Kraftstoffpumpe">Kraftstoffpumpe</option>
+            <option value="Kraftstoffdruckregler">Kraftstoffdruckregler</option>
+          </optgroup>
+          <optgroup label="Batterie">
+            <option value="Fahrzeugbatterie">Fahrzeugbatterie</option>
+            <option value="Batterieabschalter">Batterieabschalter</option>
+            <option value="Batteriekasten">Batteriekasten</option>
+          </optgroup>
+          <optgroup label="Elektrische Systeme">
+            <option value="Sicherungskasten">Sicherungskasten</option>
+            <option value="Hauptkabelstränge">Hauptkabelstränge</option>
+            <option value="Batteriehauptschalter">Batteriehauptschalter</option>
+            <option value="Kabelisolatoren">Kabelisolatoren</option>
+          </optgroup>
+          <optgroup label="Karosseriestruktur">
+            <option value="Frontsäulen">Frontsäulen</option>
+            <option value="B-Säulen">B-Säulen</option>
+            <option value="Dachholme">Dachholme</option>
+            <option value="Schweller">Schweller</option>
+          </optgroup>
+
+          <optgroup label="RETTUNGSUNTERSTÜTZENDE KOMPONENTEN"></optgroup>
+          <optgroup label="Tür- und Fenstermechanismen">
+            <option value="Türgriffe">Türgriffe</option>
+            <option value="Türverriegelungen">Türverriegelungen</option>
+            <option value="Fensterheber">Fensterheber</option>
+            <option value="Notentriegelungen">Notentriegelungen</option>
+          </optgroup>
+          <optgroup label="Sitzsysteme">
+            <option value="Fahrersitz">Fahrersitz</option>
+            <option value="Beifahrersitz">Beifahrersitz</option>
+            <option value="Rücksitz">Rücksitze</option>
+            <option value="Sitzverstellmechanismen">
+              Sitzverstellmechanismen
+            </option>
+          </optgroup>
+          <optgroup label="Sicherheitsgurte">
+            <option value="Sicherheitsgurt Fahrerseite">
+              Sicherheitsgurt Fahrerseite
+            </option>
+            <option value="Sicherheitsgurt Beifahrerseite">
+              Sicherheitsgurt Beifahrerseite
+            </option>
+            <option value="Sicherheitsgurte Rücksitze">
+              Sicherheitsgurte Rücksitze
+            </option>
+            <option value="Gurtstraffer">Gurtstraffer</option>
+          </optgroup>
+          <optgroup label="Notfallvorrichtungen">
+            <option value="Notentriegelungstaste">Notentriegelungstaste</option>
+            <option value="Notentriegelungshebel">Notentriegelungshebel</option>
+            <option value="Notfalltürgriffe">Notfalltürgriffe</option>
+            <option value="Notfallfensterhebel">Notfallfensterhebel</option>
+          </optgroup>
+          <optgroup label="Beleuchtungssysteme">
+            <option value="Innenraumbeleuchtung">Innenraumbeleuchtung</option>
+            <option value="Außenbeleuchtung">Außenbeleuchtung</option>
+            <option value="Warnblinkanlage">Warnblinkanlage</option>
+            <option value="Notbeleuchtungssysteme">
+              Notbeleuchtungssysteme
+            </option>
+          </optgroup>
+          <optgroup label="Kommunikationssysteme">
+            <option value="Freisprecheinrichtung">Freisprecheinrichtung</option>
+            <option value="Notrufsystem">Notrufsystem</option>
+            <option value="GPS-Modul">GPS-Modul</option>
+            <option value="Antennen">Antennen</option>
+          </optgroup>
+        </select>
+        <button id="rename-button">Label setzen</button>
+      </div>
+      <div id="defined-labels-container">
+        <h3>Definierte Labels:</h3>
+        <ul id="defined-labels-list"></ul>
+      </div>
+      <div id="ignore-button-container">
+        <button id="ignore-button">Komponente ignorieren</button>
+      </div>
+      <div id="save-button-container">
+        <button id="save-button">Modell herunterladen</button>
+      </div>
+      <div id="message-container">
+        <div id="message"></div>
+      </div>
+    </div>
+
+    <div id="labels-2d-container"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three/examples/js/renderers/CSS2DRenderer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three/examples/js/exporters/GLTFExporter.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/exporters/GLTFExporter.js"></script>
+
+
+    <script>
+      const container = document.getElementById("model-container");
+      const meshNamesList = document.getElementById("mesh-list");
+      const definedLabelsList = document.getElementById("defined-labels-list");
+      const renameButton = document.getElementById("rename-button");
+      const ignoreButton = document.getElementById("ignore-button");
+      const saveButton = document.getElementById("save-button");
+      const labelDropdown = document.getElementById("label-dropdown");
+      const messageElement = document.getElementById("message");
+      let selectedMesh = null;
+      let ignoredMeshes = []; // Array to store meshes to be ignored by raycaster
+
+      // Scene, Camera, Renderer
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(
+        75,
+        container.clientWidth / container.clientHeight,
+        0.1,
+        1000
+      );
+      const renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer.setSize(container.clientWidth, container.clientHeight);
+      container.appendChild(renderer.domElement);
+
+      // Label Renderer
+      const labelRenderer = new THREE.CSS2DRenderer();
+      labelRenderer.setSize(container.clientWidth, container.clientHeight);
+      labelRenderer.domElement.style.position = "absolute";
+      labelRenderer.domElement.style.top = "0";
+      document
+        .getElementById("labels-2d-container")
+        .appendChild(labelRenderer.domElement);
+
+      // Light
+      const ambientLight = new THREE.AmbientLight(0x404040); // Soft white light
+      scene.add(ambientLight);
+      const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+      directionalLight.position.set(1, 1, 1).normalize();
+      scene.add(directionalLight);
+
+      // GLTF Loader
+      const loader = new THREE.GLTFLoader();
+      let model;
+      loader.load(
+        "model/GenericModelBlend2.glb",
+        function (gltf) {
+          model = gltf.scene;
+          model.scale.set(1.5, 1.5, 1.5); // Adjust scale as necessary
+          scene.add(model);
+          // Center the model
+          const box = new THREE.Box3().setFromObject(model);
+          const center = box.getCenter(new THREE.Vector3());
+          model.position.sub(center);
+          camera.position.set(0, 1, 6); // Adjust camera position
+
+          // Enable raycasting for all meshes in the model
+          model.traverse((child) => {
+            if (child.isMesh) {
+              child.castShadow = true;
+              child.receiveShadow = true;
+              addMeshToList(child); // Add each mesh to the list
+            }
+          });
+
+          animate();
+        },
+        undefined,
+        function (error) {
+          console.error(error);
+        }
+      );
+
+      // Controls
+      const controls = new THREE.OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true; // Enable damping for smooth rotation
+      controls.dampingFactor = 0.25; // Damping factor
+      controls.rotateSpeed = 0.5; // Rotation speed
+
+      // Animation loop
+      function animate() {
+        requestAnimationFrame(animate);
+        controls.update(); // Update controls
+        renderer.render(scene, camera);
+        labelRenderer.render(scene, camera);
+      }
+
+      // Handle window resize
+      window.addEventListener("resize", () => {
+        camera.aspect = container.clientWidth / container.clientHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        labelRenderer.setSize(container.clientWidth, container.clientHeight);
+      });
+
+      // Raycasting
+      const raycaster = new THREE.Raycaster();
+      const mouse = new THREE.Vector2();
+
+      function onMouseClick(event) {
+        // Calculate mouse position in normalized device coordinates
+        mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+        mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+        // Set raycaster position and direction based on mouse and camera
+        raycaster.setFromCamera(mouse, camera);
+
+        // Filter out ignored meshes
+        const intersectObjects = [];
+        model.traverse((child) => {
+          if (child.isMesh && !ignoredMeshes.includes(child)) {
+            intersectObjects.push(child);
+          }
+        });
+
+        // Perform raycasting
+        const intersects = raycaster.intersectObjects(intersectObjects, true);
+
+        // Process intersected objects
+        if (intersects.length > 0) {
+          const selectedObject = intersects[0].object;
+          highlightMesh(selectedObject);
+          selectedMesh = selectedObject; // Set selected mesh
+          console.log(`${selectedObject.name} ist ausgewählt`);
+        }
+      }
+
+      document.addEventListener("mousedown", onMouseClick);
+
+      // Add each mesh to the list
+      function addMeshToList(mesh) {
+        const li = document.createElement("li");
+        li.textContent = mesh.name;
+        li.addEventListener("click", () => {
+          if (!ignoredMeshes.includes(mesh)) {
+            highlightMesh(mesh);
+            selectedMesh = mesh; // Set selected mesh
+          }
+        });
+        meshNamesList.appendChild(li);
+        mesh.userData.listItem = li; // Store reference to list item in userData
+      }
+
+      // Highlight the selected mesh
+      function highlightMesh(mesh) {
+        // Reset all meshes to default color
+        model.traverse((child) => {
+          if (child.isMesh) {
+            child.material.color.set(0xffffff);
+          }
+        });
+
+        // Set selected mesh color to highlight
+        mesh.material.color.set(0xff0000);
+      }
+
+      // Rename selected mesh
+      renameButton.addEventListener("click", () => {
+        if (selectedMesh) {
+          const newName = labelDropdown.value;
+          if (newName) {
+            selectedMesh.name = newName;
+            updateMeshList();
+            addLabelToMesh(selectedMesh);
+            addLabelToDefinedList(newName);
+            showMessage("Label erfolgreich erstellt");
+          } else {
+            alert("Kein Label ausgewählt");
+          }
+        } else {
+          alert("Kein Mesh ausgewählt");
+        }
+      });
+
+      // Ignore by Raycaster button
+      ignoreButton.addEventListener("click", () => {
+        if (selectedMesh) {
+          ignoredMeshes.push(selectedMesh);
+          selectedMesh.userData.listItem.textContent = `${selectedMesh.name} (ignored)`;
+          selectedMesh.userData.listItem.style.pointerEvents = "none"; // Disable click events on list item
+          showMessage(`${selectedMesh.name} wird ignoriert`);
+        } else {
+          alert("Kein Mesh ausgewählt");
+        }
+      });
+
+      // Update the mesh list with new names
+      function updateMeshList() {
+        meshNamesList.innerHTML = "";
+        model.traverse((child) => {
+          if (child.isMesh) {
+            addMeshToList(child);
+          }
+        });
+
+        // Preserve ignored state
+        ignoredMeshes.forEach((mesh) => {
+          mesh.userData.listItem.textContent = `${mesh.name} (ignored)`;
+          mesh.userData.listItem.style.pointerEvents = "none";
+        });
+      }
+
+      // Add label to the selected mesh
+      function addLabelToMesh(mesh) {
+        // Remove existing label if any
+        if (mesh.userData.label) {
+          scene.remove(mesh.userData.label);
+          delete mesh.userData.label;
+        }
+
+        const labelDiv = document.createElement("div");
+        labelDiv.className = "label";
+        labelDiv.textContent = mesh.name;
+        const label = new THREE.CSS2DObject(labelDiv);
+        const bbox = new THREE.Box3().setFromObject(mesh);
+        const center = bbox.getCenter(new THREE.Vector3());
+
+        label.position.copy(center);
+        scene.add(label);
+        mesh.userData.label = label; // Store label in userData
+    }
+    
+      // Add label to the defined labels list
+      function addLabelToDefinedList(name) {
+        const li = document.createElement("li");
+        li.textContent = name;
+        definedLabelsList.appendChild(li);
+      }
+
+      // Show message
+      function showMessage(message) {
+        messageElement.textContent = message;
+        setTimeout(() => {
+          messageElement.textContent = "";
+        }, 2000);
+      }
+
+      document.getElementById('save-button').addEventListener('click', saveModel, false);
+
+      function saveModel() {
+  const exporter = new THREE.GLTFExporter();
+  exporter.parse(
+    scene,
+    function (result) {
+      // Create a GLB (binary) Blob from the result
+      const arrayBuffer = result instanceof ArrayBuffer ? result : new Uint8Array(result).buffer;
+      const blob = new Blob([arrayBuffer], { type: 'model/gltf-binary' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'model_with_labels.glb';
+      link.click();
+      URL.revokeObjectURL(url);
+    },
+    { binary: true }
+  );
+  const messageElement = document.getElementById('message');
+  messageElement.textContent = 'Modell wird heruntergeladen...';
+  setTimeout(() => {
+    messageElement.textContent = '';
+  }, 3000);
+}
+
+    </script>
+  </body>
+</html>

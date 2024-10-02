@@ -1,0 +1,21 @@
+/*Löschen und Umbenennen Buttons*/
+.btns-con{
+    text-align: center;
+  }
+  
+  .edit,
+  .delete{
+    background-color: transparent;
+    margin: 4px;
+    font-size: 20px;
+    border: transparent;
+  }
+  
+  .edit{
+    color: #4caf50
+  }
+  
+  .delete{
+    color: #f34444;
+  }
+  

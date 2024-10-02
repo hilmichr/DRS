@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <title>Labeling</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Prompt&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/owl.carousel/dist/assets/owl.carousel.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/lightbox2/dist/css/lightbox.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/utils.css" />
+    <link rel="stylesheet" href="css/labeling.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- header -->
+    <header id="home" class="main-header label">
+      <div class="navbar">
+        <h1 class="brand"><span>Digital Rescue Sheet</span> Upload Service</h1>
+        <nav class="main__nav">
+          <ul>
+            <li><a href="home.html">Home</a></li>
+            <li>
+              <a href="#">Menü</a>
+              <ul class="dropdown">
+                <li><a href="catalog.html">Fahrzeug Katalog</a></li>
+                <li>
+                  <a href="meinerettungskarten.html">Meine Rettungskarten</a>
+                </li>
+                <li><a href="upload.html">Upload</a></li>
+              </ul>
+            </li>
+            <li><a href="home.html">Kontakt</a></li>
+            <li><a href="login.html">Login</a></li>
+          </ul>
+          <!-- <script>
+            window.addEventListener("scroll", function () {
+              const navbar = document.querySelector(".navbar");
+              const scrollY = window.scrollY; // Get scroll position
+              const middleOfPage = window.innerHeight / 2; // Calculate middle of viewport
+
+              if (scrollY > middleOfPage) {
+                navbar.classList.add("hidden");
+              } else {
+                navbar.classList.remove("hidden");
+              }
+            });
+          </script> -->
+        </nav>
+      </div>
+
+      <div class="content">
+        <h1>Labeling</h1>
+      </div>
+    </header>
+
+    <section id="projects" class="text-center py-2">
+      <div class="container__projects">
+        <h1 class="section-title">Rescue Sheet</h1>
+        <div class="border-bottom__catalog"></div>
+        <div class="lead">
+          Hier kannst du die Komponenten deines Fahrzeugs mit Labeln versehen!
+        </div>
+        <div class="containermodel">
+          <div class="left-panel">
+            <script
+              type="module"
+              src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"
+            ></script>
+
+            <model-viewer
+              src="model/GenericModelBlend2.glb"
+              auto-rotate
+              camera-controls
+              poster="poster.webp"
+              shadow-intensity="1"
+              touch-action="pan-y"
+              exposure="0.86"
+              tone-mapping="neutral"
+            >
+              <button
+                class="Hotspot"
+                slot="hotspot-12"
+                data-position="-0.8172650735127521m 0.14608625954199791m 0.6933970729981704m"
+                data-normal="-0.5031749575948979m 0.8414112362048767m 0.19708397610550174m"
+                data-visibility-attribute="visible"
+              >
+                <div class="HotspotAnnotation">Airbag</div>
+              </button>
+              <button
+                class="Hotspot"
+                slot="hotspot-13"
+                data-position="0.920374969892547m -0.830102071878192m 0.036348451715207564m"
+                data-normal="0.010316430389476085m -0.9999467842158167m -6.828220429592819e-7m"
+                data-visibility-attribute="visible"
+              >
+                <div class="HotspotAnnotation">Elektrik</div>
+              </button>
+              <button
+                class="Hotspot"
+                slot="hotspot-14"
+                data-position="1.608917404513888m -0.8072910904884338m 0.00907719722610384m"
+                data-normal="0m 1m 0m"
+                data-visibility-attribute="visible"
+              >
+                <div class="HotspotAnnotation">Benzin</div>
+              </button>
+              <button
+                class="Hotspot"
+                slot="hotspot-15"
+                data-position="0.2187116576478661m -0.3961683856254608m 1.0345289757986424m"
+                data-normal="-0.009113367383530305m -0.09701402227708816m 0.9952412903495079m"
+                data-visibility-attribute="visible"
+              >
+                <div class="HotspotAnnotation">Gurtstraffer</div>
+              </button>
+              <button
+                class="Hotspot"
+                slot="hotspot-16"
+                data-position="-1.0804755989257044m -0.850744873661976m 0.13542063629821222m"
+                data-normal="0.01031643038808483m -0.999946784215831m -6.828159538057436e-7m"
+                data-visibility-attribute="visible"
+              >
+                <div class="HotspotAnnotation">Hochspannungskabel</div>
+              </button>
+              <button
+                class="Hotspot"
+                slot="hotspot-17"
+                data-position="-1.8802853572461335m -0.8287246840098342m 0.09377036555081886m"
+                data-normal="-0.03313379805148356m -0.9994509249714109m -6.890373848375428e-7m"
+                data-visibility-attribute="visible"
+              >
+                <div class="HotspotAnnotation">Hochspannungskomponente</div>
+              </button>
+              <button
+                class="Hotspot"
+                slot="hotspot-20"
+                data-position="-0.414450285000184m -0.8438734067090556m -0.06342995007007217m"
+                data-normal="0.010316430387983907m -0.9999467842160652m 1.5577376856587705e-9m"
+                data-visibility-attribute="visible"
+              >
+                <div class="HotspotAnnotation">Controll</div>
+              </button>
+            </model-viewer>
+          </div>
+          <div class="right-panel">
+            <button
+              class="dropbtn"
+              onclick="toggleDropdown(event, 'dropdown-content')"
+            >
+              Wähle eine Komponente
+            </button>
+            <div id="dropdown-content" class="dropdown-content">
+              <div class="dropdown-submenu">
+                <a href="#" onclick="toggleDropdown(event, 'safety-submenu')"
+                  >Sicherheitsrelevante Komponenten</a
+                >
+                <div id="safety-submenu" class="dropdown-submenu-content">
+                  <div class="dropdown-submenu">
+                    <a
+                      href="#"
+                      onclick="toggleDropdown(event, 'Airbagsystem-submenu')"
+                    >
+                      1. Airbagsystem</a
+                    >
+                    <div
+                      id="Airbagsystem-submenu"
+                      class="dropdown-submenu-content"
+                    >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Frontairbag Fahrerseite')"
+                        >○ Frontairbag Fahrerseite</a
+                      >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Frontairbag Beifahrerseite')"
+                        >○ Frontairbag Beifahrerseite</a
+                      >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Seitenairbag Fahrerseite')"
+                        >○ Seitenairbag Fahrerseite</a
+                      >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Seitenairbag Beifahrerseite')"
+                        >○ Seitenairbag Beifahrerseite</a
+                      >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Kopfairbag')"
+                        >○ Kopfairbag</a
+                      >
+                    </div>
+                  </div>
+                  <div class="dropdown-submenu">
+                    <a
+                      href="#"
+                      onclick="toggleDropdown(event, 'Hochspannungssysteme-submenu')"
+                      >2. Hochspannungssysteme</a
+                    >
+                    <div
+                      id="Hochspannungssysteme-submenu"
+                      class="dropdown-submenu-content"
+                    >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Hochvoltbatterie')"
+                        >○ Hochvoltbatterie</a
+                      >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Elektrische Antriebseinheit (E-Motor)')"
+                        >○ Elektrische Antriebseinheit (E-Motor)</a
+                      >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Wechselrichter')"
+                        >○ Wechselrichter</a
+                      >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Selous-DC/DC-Wandler')"
+                        >○ DC/DC-Wandler</a
+                      >
+                    </div>
+                  </div>
+                  <div class="dropdown-submenu">
+                    <a
+                      href="#"
+                      onclick="toggleDropdown(event, 'Kraftstoffsystem-submenu')"
+                      >3.Kraftstoffsystem</a
+                    >
+                    <div
+                      id="Kraftstoffsystem-submenu"
+                      class="dropdown-submenu-content"
+                    >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Kraftstofftank')"
+                        >○ Kraftstofftank</a
+                      >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Kraftstoffleitungen')"
+                        >○ Kraftstoffleitungen</a
+                      >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Kraftstoffpumpe')"
+                        >○ Kraftstoffpumpe</a
+                      >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Kraftstoffdruckregler')"
+                        >○ Kraftstoffdruckregler</a
+                      >
+                    </div>
+                  </div>
+                  <div class="dropdown-submenu">
+                    <a
+                      href="#"
+                      onclick="toggleDropdown(event, 'Batterie-submenu')"
+                      >4. Batterie</a
+                    >
+                    <div id="Batterie-submenu" class="dropdown-submenu-content">
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Fahrzeugbatterie')"
+                        >○ Fahrzeugbatterie</a
+                      >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Batterieabschalter')"
+                        >○ Batterieabschalter</a
+                      >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Batteriekasten')"
+                        >○ Batteriekasten</a
+                      >
+                    </div>
+                  </div>
+                  <div class="dropdown-submenu">
+                    <a
+                      href="#"
+                      onclick="toggleDropdown(event, 'Sicherungskasten-submenu')"
+                      >5. Elektrische Systeme</a
+                    >
+                    <div
+                      id="Sicherungskasten-submenu"
+                      class="dropdown-submenu-content"
+                    >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Sicherungskasten')"
+                        >○ Sicherungskasten</a
+                      >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Hauptkabelstränge')"
+                        >○ Hauptkabelstränge</a
+                      >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Batteriehauptschalter')"
+                        >○ Batteriehauptschalter</a
+                      >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Kabelisolatoren')"
+                        >○ Kabelisolatoren</a
+                      >
+                    </div>
+                  </div>
+                  <div class="dropdown-submenu">
+                    <a
+                      href="#"
+                      onclick="toggleDropdown(event, 'Karosseriestruktur-submenu')"
+                      >6. Karosseriestruktur</a
+                    >
+                    <div
+                      id="Karosseriestruktur-submenu"
+                      class="dropdown-submenu-content"
+                    >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Frontsäulen')"
+                        >○ Frontsäulen</a
+                      >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'B-Säulen')"
+                        >○ B-Säulen</a
+                      >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Dachholme')"
+                        >○ Dachholme</a
+                      >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Schweller')"
+                        >○ Schweller</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="dropdown-submenu">
+                <a
+                  href="#"
+                  onclick="toggleDropdown(event, 'rescue-support-submenu')"
+                  >Rettungsunterstützende Komponenten</a
+                >
+                <div
+                  id="rescue-support-submenu"
+                  class="dropdown-submenu-content"
+                >
+                  <div class="dropdown-submenu">
+                    <a
+                      href="#"
+                      onclick="toggleDropdown(event, 'Fenstermechanismen-submenu')"
+                      >1. Tür- und Fenstermechanismen</a
+                    >
+                    <div
+                      id="Fenstermechanismen-submenu"
+                      class="dropdown-submenu-content"
+                    >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Türgriffe')"
+                        >○ Türgriffe</a
+                      >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Türverriegelungen')"
+                        >○ Türverriegelungen</a
+                      >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Fensterheber')"
+                        >○ Fensterheber</a
+                      >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Notentriegelungen')"
+                        >○ Notentriegelungen</a
+                      >
+                    </div>
+                  </div>
+                  <div class="dropdown-submenu">
+                    <a
+                      href="#"
+                      onclick="toggleDropdown(event, 'Sitzsysteme-submenu')"
+                      >2. Sitzsysteme</a
+                    >
+                    <div
+                      id="Sitzsysteme-submenu"
+                      class="dropdown-submenu-content"
+                    >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Fahrersitz')"
+                        >○ Fahrersitz</a
+                      >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Beifahrersitz')"
+                        >○ Beifahrersitz</a
+                      >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Rücksitze')"
+                        >○ Rücksitze</a
+                      >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Sitzverstellmechanismen')"
+                        >○ Sitzverstellmechanismen</a
+                      >
+                    </div>
+                  </div>
+                  <div class="dropdown-submenu">
+                    <a
+                      href="#"
+                      onclick="toggleDropdown(event, 'Sicherheitsgurte-submenu')"
+                      >3. Sicherheitsgurte</a
+                    >
+                    <div
+                      id="Sicherheitsgurte-submenu"
+                      class="dropdown-submenu-content"
+                    >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Sicherheitsgurt Fahrerseite')"
+                        >○ Sicherheitsgurt Fahrerseite</a
+                      >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Sicherheitsgurt Beifahrerseite')"
+                        >○ Sicherheitsgurt Beifahrerseite</a
+                      >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Sicherheitsgurte Rücksitze')"
+                        >○ Sicherheitsgurte Rücksitze</a
+                      >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Gurtstraffer')"
+                        >○ Gurtstraffer</a
+                      >
+                    </div>
+                  </div>
+                  <div class="dropdown-submenu">
+                    <a
+                      href="#"
+                      onclick="toggleDropdown(event, 'Notfallvorrichtungen-submenu')"
+                      >4. Notfallvorrichtungen</a
+                    >
+                    <div
+                      id="Notfallvorrichtungen-submenu"
+                      class="dropdown-submenu-content"
+                    >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Notentriegelungstaste')"
+                        >○ Notentriegelungstaste</a
+                      >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Notentriegelungshebel')"
+                        >○ Notentriegelungshebel</a
+                      >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Notfalltürgriffe')"
+                        >○ Notfalltürgriffe</a
+                      >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Notfallfensterhebel')"
+                        >○ Notfallfensterhebel</a
+                      >
+                    </div>
+                  </div>
+                  <div class="dropdown-submenu">
+                    <a
+                      href="#"
+                      onclick="toggleDropdown(event, 'Beleuchtungssysteme-submenu')"
+                      >5. Beleuchtungssysteme</a
+                    >
+                    <div
+                      id="Beleuchtungssysteme-submenu"
+                      class="dropdown-submenu-content"
+                    >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Innenraumbeleuchtung')"
+                        >○ Innenraumbeleuchtung</a
+                      >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Außenbeleuchtung')"
+                        >○ Außenbeleuchtung</a
+                      >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Warnblinkanlage')"
+                        >○ Warnblinkanlage</a
+                      >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Notbeleuchtungssysteme')"
+                        >○ Notbeleuchtungssysteme</a
+                      >
+                    </div>
+                  </div>
+                  <div class="dropdown-submenu">
+                    <a
+                      href="#"
+                      onclick="toggleDropdown(event, 'Kommunikationssysteme-submenu')"
+                      >6. Kommunikationssysteme</a
+                    >
+                    <div
+                      id="Kommunikationssysteme-submenu"
+                      class="dropdown-submenu-content"
+                    >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Freisprecheinrichtung')"
+                        >○ Freisprecheinrichtung</a
+                      >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'Notrufsystem')"
+                        >○ Notrufsystem</a
+                      >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'GPS-Modul')"
+                        >○ GPS-Modul</a
+                      >
+                      <a
+                        href="#"
+                        class="leaf"
+                        onclick="selectOption(event, 'AntennenCopied!')"
+                        >○ AntennenCopied!</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="result">
+              <p id="selected-component">Noch keine Komponente ausgewählt.</p>
+            </div>
+
+            <button onclick="setCustomLabel()" class="btn__upload btn-outline">
+              Label setzen
+            </button>
+            <p id="selectedComponent">Keine Komponente ausgewählt.</p>
+            <div class="component-box">
+              <p id="componentLabel">Label: L1</p>
+              <p>Inhalt der Komponente</p>
+            </div>
+            <button onclick="setCustomLabel()" class="btn__upload btn-outline">
+              Speichern
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="js/labeling.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="../node_modules/lightbox2/dist/js/lightbox.min.js"></script>
+  </body>
+
+  <footer id="footer">
+    <div class="containerfooter">
+      <div class="row">
+        <div class="col-12">
+          <!-- Contact -->
+          <section class="contact">
+            <header>
+              <h3>Kontakt</h3>
+            </header>
+            <p>
+              Haben Sie ein Problem?
+              <a href="contact.html" style="cursor: pointer; color: #fff"
+                >Kontaktieren Sie uns!</a
+              >
+            </p>
+          </section>
+        </div>
+      </div>
+    </div>
+  </footer>
+</html>

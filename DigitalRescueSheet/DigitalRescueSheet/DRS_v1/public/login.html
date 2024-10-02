@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Prompt&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/form.css" />
+    <link rel="stylesheet" href="css/navbar.css" />
+    <link rel="stylesheet" href="css/footer.css" />
+  </head>
+  <body>
+    <div class="alert-box">
+      <p class="alert"></p>
+    </div>
+
+    <!-- <header id="home" class="main-header contact"> -->
+    <div class="navbar">
+      <h1 class="brand"><span>Digital Rescue Sheet</span> Upload Service</h1>
+      <nav class="main__nav">
+        <ul>
+          <li><a href="home.html">Home</a></li>
+          <li>
+            <a href="#">Menü</a>
+            <ul class="dropdown">
+              <li><a href="catalog.html">Fahrzeug Katalog</a></li>
+              <li>
+                <a href="meinerettungskarten.html">Meine Rettungskarten</a>
+              </li>
+              <li><a href="upload.html">Upload</a></li>
+            </ul>
+          </li>
+          <li><a href="contact.html">Kontakt</a></li>
+          <li><a href="login.html">Login</a></li>
+        </ul>
+      </nav>
+    </div>
+    <!-- </header> -->
+
+    <div class="form">
+      <h1 class="heading">login</h1>
+      <input
+        type="email"
+        placeholder="email"
+        autocomplete="off"
+        class="email"
+        required
+      />
+      <input
+        type="password"
+        placeholder="password"
+        autocomplete="off"
+        class="password"
+        required
+      />
+      <button class="submit-btn">log in</button>
+      <a href="register.html" class="link"
+        >don't have an account? Register one</a
+      >
+    </div>
+
+    <footer id="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-12"></div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/form.js"></script>
+  </body>
+</html>

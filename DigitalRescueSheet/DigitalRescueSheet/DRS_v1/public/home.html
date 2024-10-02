@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+      integrity="sha512-L7MWcK7FNPcwNqnLdZq86lTHYLdQqZaz5YcAgE+5cnGmlw8JT03QB2+oxL100UeB6RlzZLUxCGSS4/++mNZdxw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="css/utils.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header id="home" class="main-header">
+      <div class="navbar">
+        <h1 class="brand"><span>Digital Rescue Sheet</span> Upload Service</h1>
+        <nav class="main__nav">
+          <ul>
+            <li><a href="home.html">Home</a></li>
+            <li>
+              <a href="#">Menü</a>
+              <ul class="dropdown">
+                <li><a href="catalog.html">Fahrzeug Katalog</a></li>
+                <li><a href="meinerettungskarten.html">Meine Rettungskarten</a></li>
+                <li><a href="upload.html">Upload</a></li>
+              </ul>
+            </li>
+            <li><a href="contact.html">Kontakt</a></li>
+            <li><a href="login.html">Login</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="content">
+        <h1>Digital Rescue Sheet Upload Service</h1>
+        <p>Your Guide For Saving More Lives</p>
+        <!-- <a href="home.html#movies" class="btn btn-primary">
+          <i class="fas fa-chevron-right"></i>
+          Choose Here</a
+        > -->
+        <button
+          class="button-57"
+          onclick="location.href='home.html#movies';"
+          role="button"
+        >
+          <i class="fas fa-chevron-right"></i>
+          <span class="text">Zur Anwendung</span><span>Willkommen!</span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <!-- OLD CODE IN CASE:
+        <section class="articles">
+        <article class="article flex-columns">
+          <div class="row">
+            <div class="column">
+              <div class="column-1">
+                <img src="photo/KAPAK.png" alt="" />
+              </div>
+            </div>
+            <div class="column">
+              <div class="column-2 bg-secondary">
+                <h2>Cars Catalog</h2>
+                <p>See the catalog</p>
+                <button>
+                  <a href="catalog.html" class="btn btn-outline">Read More</a>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="article flex-columns">
+          <div class="row">
+            <div class="column">
+              <div class="column-1">
+                <img src="photo/Rescue_sheet.jpg" alt="" />
+              </div>
+            </div>
+            <div class="column">
+              <div class="column-2 bg-secondary">
+                <h2>My Resque Sheet</h2>
+                <p>See all uploaded models.</p>
+                <button class="btn btn-outline">Read More</button>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="article flex-columns">
+          <div class="row">
+            <div class="column">
+              <div class="column-1">
+                <img src="photo/upload.jpg" alt="" />
+              </div>
+            </div>
+            <div class="column">
+              <div class="column-2 bg-secondary">
+                <h2>Upload</h2>
+                <p>Upload Your Own 3D car Models</p>
+                <button class="btn btn-outline">Read More</button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section> -->
+      <section id="movies" class="text-center py-2">
+        <div class="container__catalog">
+          <h2 class="section-title">Lass uns beginnen!</h2>
+          <div class="border-bottom__catalog"></div>
+          <div class="lead"> Bitte wählen Sie aus, was Sie tun möchten.</div>
+
+          <div class="container__home">
+            <div class="row">
+              <div class="col-3 card-container">
+                <a href="catalog.html"
+                  ><div class="card__right">
+                    <!-- <a href="catalog.html>" -->
+                    <img
+                      class="card-image img-fluid"
+                      src="photo/KAPAK.png"
+                      alt=""
+                    />
+                    <!-- </a> -->
+                    <div class="card-body">
+                      <h2>Fahrzeug Katalog</h2>
+                      <p>Alle Fahrzeugklassen, für die wir unseren Service bereitstellen.</p>
+                      <p>
+                        <!-- <button class="btn btn-primary">Details</button> -->
+                      </p>
+                    </div>
+                  </div></a
+                >
+              </div>
+              <div class="col-3 card-container">
+                <a href="#"
+                  ><div class="card__mittle">
+                    <a href="meinerettungskarten.html">
+                    <img
+                      class="card-image img-fluid"
+                      src="photo/Rescue_sheet.jpg"
+                      alt=""
+                    />
+                    <!-- </a> -->
+                    <div class="card-body">
+                      <h2>Meine Rettungskarten</h2>
+                      <p>Alle hochgeladenen Fahrzeugmodelle einsehen. </p>
+                      <p>
+                        <!-- <button class="btn btn-primary">Details</button> -->
+                      </p>
+                    </div>
+                    </div></a
+                >
+              </div>
+              <div class="col-3 card-container">
+                <a href="upload.html"
+                  ><div class="card__left">
+                    <!-- <a href="upload.html"> -->
+                    <img
+                      class="card-image img-fluid"
+                      src="photo/upload.jpg"
+                      alt=""
+                    />
+                    <!-- </a> -->
+                    <div class="card-body">
+                      <h2>Upload</h2>
+                      <p>Lade eigene Fahrzeugmodelle hoch und erstelle eine digitale Rettungskarte.</p>
+                      <p>
+                        <!-- <button class="btn btn-primary">Details</button> -->
+                      </p>
+                    </div>
+                  </div></a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact__home" class="contact__home flex-columns">
+        <div class="row">
+          <div class="column">
+            <div class="column-1">
+              <img src="photo/contact-us.jpg" alt="" />
+            </div>
+          </div>
+          <div class="column">
+            <div class="column-2 bg-light">
+              <h2>Kontakt </h2>
+              <form action="" class="contact-form__home">
+                <div class="form-control">
+                  <label for="name">Name</label>
+                  <input type="text" id="name" placeholder="Geben Sie Ihren Namen ein" />
+                </div>
+                <div class="form-control">
+                  <label for="name">E-Mail </label>
+                  <input
+                    type="email"
+                    id="email"
+                    placeholder="Geben Sie Ihre E-Mail Adresse ein"
+                  />
+                </div>
+                <div class="form-control">
+                  <label for="name">Telefon</label>
+                  <input
+                    type="text"
+                    id="phone"
+                    placeholder="Geben Sie Ihre Telefonnummer an"
+                  />
+                </div>
+                <button type="submit" class="btn btn-primary">Abschicken</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-12"></div>
+          <!-- Contact -->
+          <section class="contact">
+            <header>
+              <h3>Kontakt</h3>
+            </header>
+            <p>
+              DHaben Sie ein Problem?
+              <a href="contact.html" style="cursor: pointer; color: #fff"
+                >Kontaktieren Sie uns!</a
+              >
+            </p>
+  
+          </section>
+        </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Prompt&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/owl.carousel/dist/assets/owl.carousel.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/lightbox2/dist/css/lightbox.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/utils.css" />
+    <link rel="stylesheet" href="css/searchbar.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- header -->
+    <header id="home" class="main-header blog">
+      <div class="navbar">
+        <h1 class="brand"><span>Digital Rescue Sheet</span> Upload Service</h1>
+        <nav class="main__nav">
+          <ul>
+            <li><a href="home.html">Home</a></li>
+            <li>
+              <a href="#">Menü</a>
+              <ul class="dropdown">
+                <li><a href="catalog.html">Fahrzeug Katalog</a></li>
+                <li><a href="meinerettungskarten.html">Meine Rettungskarten</a></li>
+                <li><a href="upload.html">Upload</a></li>
+              </ul>
+            </li>
+            <li><a href="contact.html">Kontakt</a></li>
+            <li><a href="login.html">Login</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="content">
+        <h1>Cars Catalog</h1>
+      </div>
+    </header>
+
+    <title>Popup-Fenster</title>
+
+    <div id="overlay" class="overlay"></div>
+
+    <!-- <section id="catalog" class="text-center py-2">
+      <div class="container__catalog">
+        <h2 class="section-title"> </h2>
+        <div class="search-container">
+          <input type="text" id="search-input" class="search-input" placeholder="Suche ..." oninput="showSuggestions()">
+          <div id="suggestions" class="suggestions"></div>
+      </div>
+
+      <div id="image-container" class="image-container">
+          <div id="Micro-container" class="image-item" style="display:none;">
+            <img src="photo/micro.png" alt="Micro">
+            <button 
+              onclick="openPopup('popup1')"
+              class="btn__catalog btn-outline__catalog"
+              style="font-size: 1em">Read More</button>
+          </div>
+
+          <div id="Hatchback-container" class="image-item" style="display:none;">
+            <img src="photo/hachback.png" alt="Hatchback" />
+            <button 
+              onclick="openPopup('popup2')"
+              class="btn__catalog btn-outline__catalog"
+              style="font-size: 1em">Read More</button>
+          </div>
+
+          <div id="SUV-container" class="image-item" style="display:none;">
+            <img src="photo/suv.png" alt="SUV" />
+              <button 
+              onclick="openPopup('popup3')"
+              class="btn__catalog btn-outline__catalog"
+              style="font-size: 1em">Read More</button>
+          </div>
+
+          <div id="MPV-container" class="image-item" style="display:none;">
+            <img src="photo/mpv.png" alt="MPV" />
+              <button 
+              onclick="openPopup('popup4')"
+              class="btn__catalog btn-outline__catalog"
+              style="font-size: 1em">Read More</button>
+          </div>
+
+          <div id="Sedan-container" class="image-item" style="display:none;">
+            <img src="photo/sedan.png" alt="Sedan" />
+            <button 
+            onclick="openPopup('popup5')"
+            class="btn__catalog btn-outline__catalog"
+            style="font-size: 1em">Read More</button>
+          </div>
+
+          <div id="Reisemobile-container" class="image-item" style="display:none;">
+            <img src="photo/Reisemobile.png" alt="Reisemobile" />
+              <button 
+              onclick="openPopup('popup6')"
+              class="btn__catalog btn-outline__catalog"
+              style="font-size: 1em">Read More</button>
+          </div>
+
+          <div id="Wagon-container" class="image-item" style="display:none;">
+            <img src="photo/wagon.png" alt="Wagon" />
+              <button 
+              onclick="openPopup('popup7')"
+              class="btn__catalog btn-outline__catalog"
+              style="font-size: 1em">Read More</button>
+          </div>
+
+          <div id="Cabrio-container" class="image-item" style="display:none;">
+            <img src="photo/cabrio.png" alt="Cabrio" />
+            <button 
+            onclick="openPopup('popup8')"
+            class="btn__catalog btn-outline__catalog"
+            style="font-size: 1em">Read More</button>
+          </div>
+
+          <div id="Electric-container" class="image-item" style="display:none;">
+            <img src="photo/electric.png" alt="Electric" />
+              <button 
+              onclick="openPopup('popup9')"
+              class="btn__catalog btn-outline__catalog"
+              style="font-size: 1em">Read More</button>
+          </div>
+        
+      </div> -->
+    <section id="catalog" class="text-center py-2">
+      <div class="container__catalog">
+        <h2 class="section-title">Choose your car!</h2>
+        <div class="border-bottom__catalog"></div>
+        <!-- <div class="lead" style="margin-bottom: 0px">
+          Lorem ipsum dolor sit amet.
+        </div> -->
+        <!-- <h2 class="section-title"></h2> -->
+        <div class="search-container">
+          <input
+            type="text"
+            id="search-input"
+            class="search-input"
+            placeholder="Search..."
+            oninput="showSuggestions()"
+          />
+          <div id="suggestions" class="suggestions"></div>
+        </div>
+
+        <div class="items">
+          <div class="item">
+            <div class="item__image">
+              <a href="photo/micro.png" data-lightbox="roadtrip">
+                <img src="photo/micro.png" alt="" />
+              </a>
+            </div>
+            <div class="item__text">
+              <div class="item__text__wrap">
+                <h2 class="item__text__title" style="color: #27374d">MICRO</h2>
+                <button
+                  onclick="openPopup('popup1')"
+                  class="btn__catalog btn-outline__catalog"
+                  style="font-size: 1em"
+                >
+                  Read More
+                </button>
+                <div id="popup1" class="popup">
+                  <h2>Informationen zu MICRO</h2>
+                  <img
+                    src="photo/micro.png"
+                    alt=""
+                    style="
+                      margin-top: 6px;
+
+                      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+                      width: 18em;
+                      border-radius: 2%;
+                    "
+                  />
+                  <p>Lörem Ipsum dolor set amet</p>
+                  <button
+                    class="btn__pop btn-outline"
+                    onclick="closePopup('popup1')"
+                  >
+                    x
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="item__image">
+              <a href="photo/hachback.png" data-lightbox="roadtrip">
+                <img src="photo/hachback.png" alt="" />
+              </a>
+            </div>
+            <div class="item__text">
+              <div class="item__text__wrap">
+                <h2 class="item__text__title" style="color: #27374d">
+                  HATCHBACK
+                </h2>
+                <button
+                  onclick="openPopup('popup2')"
+                  class="btn__catalog btn-outline__catalog"
+                  style="font-size: 1em"
+                >
+                  Read More
+                </button>
+                <div id="popup2" class="popup">
+                  <h2>Informationen zu HATCHBACK</h2>
+                  <img
+                    src="photo/hachback.png"
+                    alt=""
+                    style="
+                      margin-top: 6px;
+                      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+                      width: 18em;
+                      border-radius: 2%;
+                    "
+                  />
+                  <p>Lörem Ipsum dolor set amet</p>
+                  <button
+                    class="btn__pop btn-outline"
+                    onclick="closePopup('popup2')"
+                  >
+                    x
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item__image">
+              <a href="photo/suv.png" data-lightbox="roadtrip">
+                <img src="photo/suv.png" alt="" />
+              </a>
+            </div>
+            <div class="item__text">
+              <div class="item__text__wrap">
+                <h2 class="item__text__title" style="color: #27374d">SUV</h2>
+                <button
+                  onclick="openPopup('popup3')"
+                  class="btn__catalog btn-outline__catalog"
+                  style="font-size: 1em"
+                >
+                  Read More
+                </button>
+                <div id="popup3" class="popup">
+                  <h2>Informationen zu SUV</h2>
+                  <img
+                    src="photo/suv.png"
+                    alt=""
+                    style="
+                      margin-top: 6px;
+                      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+                      width: 18em;
+                      border-radius: 2%;
+                    "
+                  />
+                  <p>Lörem Ipsum dolor set amet</p>
+                  <button
+                    class="btn__pop btn-outline"
+                    onclick="closePopup('popup3')"
+                  >
+                    x
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item__image">
+              <a href="photo/mpv.png">
+                <img src="photo/mpv.png" alt="" />
+              </a>
+            </div>
+            <div class="item__text">
+              <div class="item__text__wrap">
+                <h2 class="item__text__title" style="color: #27374d">MPV</h2>
+                <button
+                  onclick="openPopup('popup4')"
+                  class="btn__catalog btn-outline__catalog"
+                  style="font-size: 1em"
+                >
+                  Read More
+                </button>
+                <div id="popup4" class="popup">
+                  <h2>Informationen zu MPV</h2>
+                  <img
+                    src="photo/mpv.png"
+                    alt=""
+                    style="
+                      margin-top: 6px;
+                      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+                      width: 18em;
+                      border-radius: 2%;
+                    "
+                  />
+                  <p>Lörem Ipsum dolor set amet</p>
+                  <button
+                    class="btn__pop btn-outline"
+                    onclick="closePopup('popup4')"
+                  >
+                    x
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item__image">
+              <a href="photo/sedan.png">
+                <img src="photo/sedan.png" alt="" />
+              </a>
+            </div>
+            <div class="item__text">
+              <div class="item__text__wrap">
+                <h2 class="item__text__title" style="color: #27374d">SEDAN</h2>
+                <button
+                  onclick="openPopup('popup5')"
+                  class="btn__catalog btn-outline__catalog"
+                  style="font-size: 1em"
+                >
+                  Read More
+                </button>
+                <div id="popup5" class="popup">
+                  <h2>Informationen zu SEDAN</h2>
+                  <img
+                    src="photo/sedan.png"
+                    alt=""
+                    style="
+                      margin-top: 6px;
+                      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+                      width: 18em;
+                      border-radius: 2%;
+                    "
+                  />
+                  <p>Lörem Ipsum dolor set amet</p>
+                  <button
+                    class="btn__pop btn-outline"
+                    onclick="closePopup('popup5')"
+                  >
+                    x
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item__image">
+              <a href="photo/Reisemobile.png">
+                <img src="photo/Reisemobile.png" alt="" />
+              </a>
+            </div>
+            <div class="item__text">
+              <div class="item__text__wrap">
+                <h2 class="item__text__title" style="color: #27374d">
+                  REISEMOBILE
+                </h2>
+                <button
+                  onclick="openPopup('popup6')"
+                  class="btn__catalog btn-outline__catalog"
+                  style="font-size: 1em"
+                >
+                  Read More
+                </button>
+                <div id="popup6" class="popup">
+                  <h2>Informationen zu REISEMOBILE</h2>
+                  <img
+                    src="photo/Reisemobile.png"
+                    alt=""
+                    style="
+                      margin-top: 6px;
+                      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+                      width: 18em;
+                      border-radius: 2%;
+                    "
+                  />
+                  <p>Lörem Ipsum dolor set amet</p>
+                  <button
+                    class="btn__pop btn-outline"
+                    onclick="closePopup('popup6')"
+                  >
+                    x
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item__image">
+              <a href="photo/wagon.png">
+                <img src="photo/wagon.png" alt="" />
+              </a>
+            </div>
+            <div class="item__text">
+              <div class="item__text__wrap">
+                <h2 class="item__text__title" style="color: #27374d">WAGON</h2>
+                <button
+                  onclick="openPopup('popup7')"
+                  class="btn__catalog btn-outline__catalog"
+                  style="font-size: 1em"
+                >
+                  Read More
+                </button>
+                <div id="popup7" class="popup">
+                  <h2>Informationen zu WAGON</h2>
+                  <img
+                    src="photo/wagon.png"
+                    alt=""
+                    style="
+                      margin-top: 6px;
+                      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+                      width: 18em;
+                      border-radius: 2%;
+                    "
+                  />
+                  <p>Lörem Ipsum dolor set amet</p>
+                  <button
+                    class="btn__pop btn-outline"
+                    onclick="closePopup('popup7')"
+                  >
+                    x
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item__image">
+              <a href="photo/cabrio.png">
+                <img src="photo/cabrio.png" alt="" />
+              </a>
+            </div>
+            <div class="item__text">
+              <div class="item__text__wrap">
+                <h2 class="item__text__title" style="color: #27374d">CABRIO</h2>
+                <button
+                  onclick="openPopup('popup8')"
+                  class="btn__catalog btn-outline__catalog"
+                  style="font-size: 1em"
+                >
+                  Read More
+                </button>
+                <div id="popup8" class="popup">
+                  <h2>Informationen zu CABRIO</h2>
+                  <img
+                    src="photo/cabrio.png"
+                    alt=""
+                    style="
+                      margin-top: 6px;
+                      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+                      width: 18em;
+                      border-radius: 2%;
+                    "
+                  />
+                  <p>Lörem Ipsum dolor set amet</p>
+                  <button
+                    class="btn__pop btn-outline"
+                    onclick="closePopup('popup8')"
+                  >
+                    x
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item__image">
+              <a href="home.html">
+                <img src="photo/electric.png" alt="" />
+              </a>
+            </div>
+            <div class="item__text">
+              <div class="item__text__wrap">
+                <h2 class="item__text__title" style="color: #27374d">
+                  ELECTRIC
+                </h2>
+                <button
+                  onclick="openPopup('popup9')"
+                  class="btn__catalog btn-outline__catalog"
+                  style="font-size: 1em"
+                >
+                  Read More
+                </button>
+                <div id="popup9" class="popup">
+                  <h2>Informationen zu ELECTRIC</h2>
+                  <img
+                    src="photo/electric.png"
+                    alt=""
+                    style="
+                      margin-top: 6px;
+                      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+                      width: 18em;
+                      border-radius: 2%;
+                    "
+                  />
+                  <p>Lörem Ipsum dolor set amet</p>
+                  <button
+                    class="btn__pop btn-outline"
+                    onclick="closePopup('popup9')"
+                  >
+                    x
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="../node_modules/lightbox2/dist/js/lightbox.min.js"></script>
+    <script src="js/catalogScript.js"></script>
+  </body>
+
+  <footer id="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <!-- Contact -->
+          <section class="contact">
+            <header>
+              <h3>Contact</h3>
+            </header>
+            <p>
+              Do you have a problem?
+              <a href="contact.html" style="cursor: pointer; color: #fff"
+                >Contact us!</a
+              >
+            </p>
+          </section>
+        </div>
+      </div>
+    </div>
+  </footer>
+</html>
